@@ -37,6 +37,6 @@ def get_solution_from_file(file, set):
     return (optimal, secuence)
 
 '''
-print(get_data_set_from_file('data/3.txt'))
-print(get_solution_from_file('data/Resultados Esperados.txt', '10.txt'))
+print(get_data_set_from_file('data/catedra/3.txt'))
+print(get_solution_from_file('data/catedra/Resultados Esperados.txt', '10.txt'))
 '''
