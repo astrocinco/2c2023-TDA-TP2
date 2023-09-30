@@ -3,9 +3,8 @@ def get_data_set_from_file(file):
     e = []
     s = []
     with open(file,'r') as o_file:
-        size = int(o_file.readline(1))
         i=1
-        o_file.readline()
+        size = int(o_file.readline())
         for line in o_file:
             if(i <= size):
                 e.append(int(line))
