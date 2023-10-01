@@ -19,15 +19,23 @@ def get_best_secuence_of_trainings(e, s):
     j = M[i].index(optimal_value)
     secuence = []
     while(not (i == 0 and j == 0)):
+        secuence.insert(0, 'E')
         if(j == 0):
-            secuence.append('E')
-            secuence.append('D')
+            secuence.insert(0, 'D')
+            if(i == 1):
+                i -= 1
+                continue
             i -= 2
+            if(i == 0):
+                secuence.insert(0, 'E')
+            optimal_value = max(M[i])
+            j = M[i].index(optimal_value)
             continue
-        else:
-            secuence.append('E')
-            i -=1
+        i -=1
         j -= 1
+        if(i == 0):
+            secuence.insert(0, 'E')
+                
     return secuence
 
 def get_best_training(e, s):
@@ -56,7 +64,15 @@ e = [5, 80, 12, 7, 16]
 s = [80, 16, 14, 8, 3]
 #   s1  s2  s3  s4 s5
 
+## secuence: [D, E, E, D, E]
+
 print(get_alternative_training(e, s))        
+
+def print_matrix(M):
+    for i in M:
+        print(i)
+    
 print(get_best_training(e, s))        
+print_matrix(get_matrix_of_training(e, s))        
 print(get_best_secuence_of_trainings(e, s))        
 '''
