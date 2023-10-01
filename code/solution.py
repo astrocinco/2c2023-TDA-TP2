@@ -1,40 +1,36 @@
 def get_matrix_of_training(e, s):
     M = [[0 for j in range(len(e))] for i in range(len(s))] # fil: entrenamientos, col: energia
-    for i in range(len(e)):
-        for j in range(len(s)):
-            if(j > i): continue
-            if(j == 0):
-                if(i == 0 or i == 1):
-                    M[i][j] = min(e[i], s[j])
+    for ei in range(len(e)):
+        for sj in range(len(s)):
+            if(sj > ei): continue
+            if(sj == 0):
+                if(ei == 0 or ei == 1):
+                    M[ei][sj] = min(e[ei], s[sj])
                 else:
-                    M[i][j] = min(e[i], s[j]) + max(M[i-2]) 
+                    M[ei][sj] = min(e[ei], s[sj]) + max(M[ei-2]) 
             else:
-                M[i][j] = min(e[i], s[j]) + (M[i-1][j-1])
+                M[ei][sj] = min(e[ei], s[sj]) + (M[ei-1][sj-1])
     return M
 
 def get_best_secuence_of_trainings(e, s):
     M = get_matrix_of_training(e, s)
-    i = len(e)-1
-    optimal_value = max(M[i])
-    j = M[i].index(optimal_value)
+    ei = len(e)-1
+    sj = M[ei].index(max(M[ei]))
     secuence = []
-    while(not (i == 0 and j == 0)):
+    while(not (ei == 0 and sj == 0)):
         secuence.insert(0, 'E')
-        if(j == 0):
+        if(sj == 0):
             secuence.insert(0, 'D')
-            if(i == 1):
-                i -= 1
-                continue
-            i -= 2
-            if(i == 0):
-                secuence.insert(0, 'E')
-            optimal_value = max(M[i])
-            j = M[i].index(optimal_value)
-            continue
-        i -=1
-        j -= 1
-        if(i == 0):
-            secuence.insert(0, 'E')
+            if(ei == 1): 
+                ei -= 1
+                continue 
+            else:
+                ei -= 2
+            sj = M[ei].index(max(M[ei]))
+        else:
+            ei -=1
+            sj -= 1
+        if(ei == 0): secuence.insert(0, 'E')
                 
     return secuence
 
