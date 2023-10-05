@@ -1,3 +1,5 @@
+MAX_EFFORT = 2000
+MAX_ENERGY = 500
 
 def get_data_set_from_file(file):
     e = []
@@ -35,6 +37,28 @@ def get_solution_from_file(file, set):
                 secuence.append('D')
             
     return (optimal, secuence)
+
+
+def create_random_data_set(days, max_effort = MAX_EFFORT, max_energy = MAX_ENERGY, min_effort = 0 , min_energy = 0):
+    import random as r
+    e = []
+    s = []
+    
+    for i in range(0,days):
+        e.append(r.randint(min_effort, max_effort))
+        
+        if i == 0:
+            s.append( r.randint(min_energy + days, max_energy))
+        else:
+            try:
+                s.append(r.randint(min_energy + days-i, s[i-1]-1)) 
+            except ValueError:
+                print(f"VALUE ERROR: minimo = {min_energy + days-i}, maximo = {s[i-1]-1}")
+                print(f"min_energy = {min_energy}, dias menos i = {days-i}, i = {i}")
+
+    return e,s
+ 
+
 
 '''
 print(get_data_set_from_file('data/3.txt'))
