@@ -1,5 +1,5 @@
 MAX_EFFORT = 2000
-MAX_ENERGY = 500
+MAX_ENERGY = 2000
 
 def get_data_set_from_file(file):
     e = []
@@ -62,21 +62,27 @@ def create_random_data_set(days, max_effort = MAX_EFFORT, max_energy = MAX_ENERG
     return (e,s)
 
 def data_set_to_txt(data_set : tuple, n, file_name):
+    
     file_name = "2c2023-TDA-TP2\data\personalized_sets\_" + file_name 
+    
     file = open(file_name,"w")
     file.write(str(n)+"\n")
+    
     for data in data_set[0]:
         file.write(str(data)+"\n")
     for data in data_set[1]:
         file.write(str(data)+"\n")
    
     file.close()
+    
     return 0
-data = create_random_data_set(5,25,30)
-data_set_to_txt(data, 5, "prueba.txt")
+
 '''
 print(get_data_set_from_file('data/3.txt'))
 print(get_solution_from_file('data/Resultados Esperados.txt', '10.txt'))
+
+
+data = create_random_data_set(5,25,30)
+data_set_to_txt(data, 5, "prueba.txt")
 '''
 
-# f"../data/personalized_sets/{file_name}"
