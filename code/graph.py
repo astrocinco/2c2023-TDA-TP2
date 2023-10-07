@@ -20,18 +20,18 @@ def make_graph_for_different_method_durations(files, method='nuestra solucion'):
     alternative_results = analysis.results_data_sets_catedra(files, solution.get_alternative_training, solution.get_best_secuence_of_trainings)
     
     results = ({
+     'Files': files,
      'Expected': [result[0] for result in best_results["expected"]],
-     'Obtained': [result[0] for result in best_results["obtained"]],
+     'Our algorithm': [result[0] for result in best_results["obtained"]],
      'Alternative': [result[0] for result in alternative_results["obtained"]],
     })
     
     data = pd.DataFrame(results)
-
     
     plt.style.use('ggplot')
-    data.plot.bar(stacked=False)
-    plt.title("Diferencia de resultado con la respuesta óptima para " + method)
+    data.set_index('Files').plot.bar(stacked=False)
+    plt.title("Ganancias obtenidas según algoritmo " + method)
     plt.xlabel("Numero de set")
-    plt.ylabel("Resultado del analisis")
-    plt.yscale('log')
+    plt.ylabel("Ganancia obtenida")
+    #plt.yscale('log')
     plt.show()
