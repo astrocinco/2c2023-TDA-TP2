@@ -1,22 +1,27 @@
-def get_matrix_of_training(e, s):
-    M = [[0 for j in range(len(e))] for i in range(len(s))] # fil: entrenamientos, col: energia
-    for ei in range(len(e)):
-        for sj in range(len(s)):
+def get_matrix_of_training(effort_list, energy_list):
+    matrix = [[0 for j in range(len(effort_list))] for i in range(len(energy_list))] # fil: entrenamientos, col: energia
+    
+    for ei in range(len(effort_list)):
+        for sj in range(len(energy_list)):
             if(sj > ei): continue
             if(sj == 0):
                 if(ei == 0 or ei == 1):
-                    M[ei][sj] = min(e[ei], s[sj])
+                    matrix[ei][sj] = min(effort_list[ei], energy_list[sj])
                 else:
-                    M[ei][sj] = min(e[ei], s[sj]) + max(M[ei-2]) 
+                    matrix[ei][sj] = min(effort_list[ei], energy_list[sj]) + max(matrix[ei-2]) 
             else:
-                M[ei][sj] = min(e[ei], s[sj]) + (M[ei-1][sj-1])
-    return M
+                matrix[ei][sj] = min(effort_list[ei], energy_list[sj]) + (matrix[ei-1][sj-1])
 
-def get_best_secuence_of_trainings(e, s):
-    M = get_matrix_of_training(e, s)
-    ei = len(e)-1
-    sj = M[ei].index(max(M[ei]))
+    return matrix
+
+
+
+def get_best_secuence_of_trainings(effort_list, energy_list):
+    matrix = get_matrix_of_training(effort_list, energy_list)
+    ei = len(effort_list)-1
+    sj = matrix[ei].index(max(matrix[ei]))
     secuence = []
+
     while(not (ei == 0 and sj == 0)):
         secuence.insert(0, 'E')
         if(sj == 0):
@@ -26,7 +31,7 @@ def get_best_secuence_of_trainings(e, s):
                 continue 
             else:
                 ei -= 2
-            sj = M[ei].index(max(M[ei]))
+            sj = matrix[ei].index(max(matrix[ei]))
         else:
             ei -=1
             sj -= 1
@@ -34,41 +39,25 @@ def get_best_secuence_of_trainings(e, s):
                 
     return secuence
 
-def get_best_training(e, s):
-    M = get_matrix_of_training(e, s)
-    return max(M[len(e)-1])
 
-def get_alternative_training(e, s):
+
+def get_best_training(effort_list, energy_list):
+    matrix = get_matrix_of_training(effort_list, energy_list)
+
+    return max(matrix[len(effort_list)-1])
+
+
+
+def get_alternative_training(effort_list, energy_list):
+    cant_e = len(effort_list)
     
-    cant_e = len(e)
-    
-    first_train = min(e[0], s[0])
-    second_train = max(first_train + min(e[1], s[1]), min(e[1], s[0])) 
+    first_train = min(effort_list[0], energy_list[0])
+    second_train = max(first_train + min(effort_list[1], energy_list[1]), min(effort_list[1], energy_list[0])) 
     opt = [first_train, second_train]
     
     for i in range(2, cant_e):
-        a = min(e[i], s[i]) + opt[i-1]
-        b = min(e[i], s[0]) + opt[i-2]
+        a = min(effort_list[i], energy_list[i]) + opt[i-1]
+        b = min(effort_list[i], energy_list[0]) + opt[i-2]
         opt.append(max(a, b))
         
     return opt[cant_e - 1]
-
-'''
-e = [5, 80, 12, 7, 16]
-#   e1  e2  e3  e4 e5
-
-s = [80, 16, 14, 8, 3]
-#   s1  s2  s3  s4 s5
-
-## secuence: [D, E, E, D, E]
-
-print(get_alternative_training(e, s))        
-
-def print_matrix(M):
-    for i in M:
-        print(i)
-    
-print(get_best_training(e, s))        
-print_matrix(get_matrix_of_training(e, s))        
-print(get_best_secuence_of_trainings(e, s))        
-'''
