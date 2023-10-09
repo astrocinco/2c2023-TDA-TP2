@@ -1,3 +1,6 @@
+import sets
+import sys
+
 def get_matrix_of_training(effort_list, energy_list):
     matrix = [[0 for j in range(len(effort_list))] for i in range(len(energy_list))] # fil: entrenamientos, col: energia
     
@@ -61,3 +64,17 @@ def get_alternative_training(effort_list, energy_list):
         opt.append(max(a, b))
         
     return opt[cant_e - 1]
+
+if __name__ == "__main__":
+    try:
+        file = sys.argv[1]
+    except IndexError:
+        print("ERROR")
+        print("Usage: <arg1> file with information of trainings")
+        sys.exit(1)
+
+    (effort_list, energy_list) = sets.get_data_set_from_file(file)
+    secuence = get_best_secuence_of_trainings(effort_list, energy_list)
+    
+    print(f"Best effort: {get_best_training(effort_list, energy_list)}")
+    print(f"Secuence of trainings: {secuence}")

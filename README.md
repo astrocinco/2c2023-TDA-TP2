@@ -4,7 +4,7 @@ Grupo compuesto por Martín González Prieto (105738), Santiago Langer (107912) 
 
 - [TDA-TP2](#tda-tp2)
   - [Codigo](#codigo)
-    - [solutions.py](#solutionspy)
+    - [solution.py](#solutionpy)
     - [sets.py](#setspy)
     - [analysis.py](#analysispy)
     - [graph.py](#graphpy)
@@ -14,9 +14,13 @@ Grupo compuesto por Martín González Prieto (105738), Santiago Langer (107912) 
 
 ## Codigo
 
-### solutions.py
+### solution.py
 
 Archivo que contiene las funciones correspondientes a las diferentes posibles soluciones del problema.
+
+    python3 solution.py [filename]
+
+Recibe como **parámetro** la ruta de un archivo con el dataset a resolver.
 
 ### sets.py
 
