@@ -8,7 +8,8 @@ def get_data_set_from_file(file):
     energy_list = []
     with open(file,'r') as o_file:
         i=1
-        size = int(o_file.readline())
+        line = o_file.readline()
+        size = int(line)
         for line in o_file:
             if(i <= size):
                 effort_list.append(int(line))

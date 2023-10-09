@@ -18,10 +18,9 @@ def make_execution_time_graph(time_execution, title="Gráfico de tiempo de ejecu
     
 
 
-def make_graph_for_different_method_durations(files, method='nuestra solucion'):
-
-    best_results = analysis.results_data_sets_catedra(files, solution.get_best_training, solution.get_best_secuence_of_trainings)
-    alternative_results = analysis.results_data_sets_catedra(files, solution.get_alternative_training, solution.get_best_secuence_of_trainings)
+def make_graph_for_different_method_durations(files, method='nuestra solucion', results_data_sets_function = analysis.results_data_sets_catedra):
+    best_results = results_data_sets_function(files, solution.get_best_training, solution.get_best_secuence_of_trainings)
+    alternative_results = results_data_sets_function(files, solution.get_alternative_training, solution.get_best_secuence_of_trainings)
     
     results = ({
      'Files': files,
