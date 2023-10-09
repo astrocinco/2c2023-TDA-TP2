@@ -71,7 +71,7 @@ def results_data_sets_propios(files, method, secuence_method):
 
 
 
-def results_analysis(solution_results):
+def results_analysis(solution_results, compare_secuence=True):
     
     for i in range(len(solution_results["expected"])):
         
@@ -84,4 +84,7 @@ def results_analysis(solution_results):
         else: sec_analysis = Fore.RED + '✘' + Fore.WHITE 
         
         file_name = solution_results["files"][i]
-        print(f"{file_name}: {sol_analysis} - Secuence diff: {sec_analysis}")
+        output = f"{file_name}: {sol_analysis} " 
+        if(compare_secuence): 
+            output = output + f"- Secuence diff: {sec_analysis}"
+        print(output)
