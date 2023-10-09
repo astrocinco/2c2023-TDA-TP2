@@ -5,6 +5,8 @@ import timeit
 import pandas as pd
 from colorama import Fore
 
+
+
 def get_execution_time(method, max, rep, size):
     df_time = pd.DataFrame()
     for n_days in range(2, max):
@@ -18,6 +20,8 @@ def get_execution_time(method, max, rep, size):
         df_time = pd.concat([df_time, aux_df])
     return df_time
 
+
+
 def secuence_analysis(solution, local):
     diff = []
 
@@ -28,6 +32,8 @@ def secuence_analysis(solution, local):
             diff.append(i)
 
     return diff
+
+
 
 def results_data_sets_catedra(files, method, secuence_method):
     solution_expected = []
@@ -44,6 +50,8 @@ def results_data_sets_catedra(files, method, secuence_method):
         solution_obtained.append((local_sol, local_sec))
     
     return {"files": files, "expected": solution_expected, "obtained": solution_obtained}
+
+
 
 def results_analysis(solution_results):
     

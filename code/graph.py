@@ -5,6 +5,8 @@ import analysis
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
+
 #Grafica el tiempo de ejecución dado un dataframe (acepta que tenga más de un método)
 def make_execution_time_graph(time_execution, title="Gráfico de tiempo de ejecución"):
     plt.style.use('ggplot')
@@ -14,6 +16,8 @@ def make_execution_time_graph(time_execution, title="Gráfico de tiempo de ejecu
     plt.ylabel("Tiempo [ms]")
     plt.show()
     
+
+
 def make_graph_for_different_method_durations(files, method='nuestra solucion'):
 
     best_results = analysis.results_data_sets_catedra(files, solution.get_best_training, solution.get_best_secuence_of_trainings)
