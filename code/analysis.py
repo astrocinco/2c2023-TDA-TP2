@@ -53,6 +53,24 @@ def results_data_sets_catedra(files, method, secuence_method):
 
 
 
+def results_data_sets_propios(files, method, secuence_method):
+    solution_expected = []
+    solution_obtained = []
+    
+    for file in files:
+        (e, s) = sets.get_data_set_from_file('../data/propios/' + file)
+        (sol, sec) = sets.get_solution_from_file('../data/propios/Resultados Esperados.txt', file)
+        
+        local_sol = method(e, s)
+        local_sec = secuence_method(e, s)
+        
+        solution_expected.append((sol, sec))
+        solution_obtained.append((local_sol, local_sec))
+    
+    return {"files": files, "expected": solution_expected, "obtained": solution_obtained}
+
+
+
 def results_analysis(solution_results):
     
     for i in range(len(solution_results["expected"])):

@@ -1,0 +1,11 @@
+6.txt
+Ganancia maxima: 410
+Plan de entrenamiento: Entreno, Entreno, Entreno, Descanso, Entreno, Entreno
+
+6_bis.txt
+Ganancia maxima: 290
+Plan de entrenamiento: Descanso, Entreno, Entreno, Descanso, Entreno, Entreno
+
+10.txt
+Ganancia maxima: 440
+Plan de entrenamiento: Descanso, Entreno, Entreno, Descanso, Entreno, Entreno, Entreno, Entreno, Descanso, Entreno
